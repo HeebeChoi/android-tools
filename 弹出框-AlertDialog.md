@@ -9,5 +9,7 @@ public void alterDialog(String content_message,String btn_message){
         public void onClick(DialogInterface dialog, int which) {
         }
     });
+    AlertDialog dialog=builder.create();
+    dialog.show();
 }
 ```
