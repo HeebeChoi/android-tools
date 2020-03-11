@@ -708,7 +708,7 @@ if(checked==true){
 //提交保存
 editor.commit();
 ```
-> 同时，我们也可以从``对象中，获取保存的数据：
+> 同时，我们也可以从`sharedPreferences`对象中，获取保存的数据：
 
 ```java
 //创建sharedPreferences对象，该对象通过getSharedPreferences()方法创建之后，在data/date/包/下可以找到
