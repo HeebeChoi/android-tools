@@ -694,6 +694,7 @@ public class User implements Serializable {
 }
 ```
 > 从我们的以上案例中，我们可以看见我们可以通过`context`全局对象创建`SharedPreferences`对象实现数据的保存：
+
 ```java
 //创建sharedPreferences对象，该对象通过getSharedPreferences()方法创建之后，在data/date/包/下可以找到
 sharedPreferences1 = context.getSharedPreferences("ckinfo", context.MODE_PRIVATE);
@@ -706,16 +707,18 @@ if(checked==true){
 }
 //提交保存
 editor.commit();
-```java
+```
 > 同时，我们也可以从``对象中，获取保存的数据：
+
 ```java
 //创建sharedPreferences对象，该对象通过getSharedPreferences()方法创建之后，在data/date/包/下可以找到
 sharedPreferences2 = context.getSharedPreferences("ckinfo",context.MODE_PRIVATE);
 //存入数据：第一个数据是key，第二个数据是value---以键值对保存
 String checked = sharedPreferences2.getString("flag","");
 ```
+
 > SharedPreferences对象相关介绍：
-```
+```java
 SharedPreferences
 SharedPreferences 是 Android 系统提供的一个通用的数据持久化框架，用于存储和读取 key-value 类型的原始基本数据对。
 
