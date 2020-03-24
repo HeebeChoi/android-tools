@@ -117,3 +117,48 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 ```
+
+> 上面我们提到了Spinner组件的用法，现在我们再来理解下他的过程，可能上面的稍微复杂了点
+```java
+package njpji.spinnerdemo;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.Toast;
+public class MainActivity extends AppCompatActivity {
+    private ArrayAdapter<String> arrayAdapter;
+    private String[] array;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //加载布局文件
+        setContentView(R.layout.activity_spinner);
+        //定义spinner控件的下拉内容
+        array = new String[]{"vivo","huawei","apple"};
+        //找到spinner控件
+        Spinner spinner = findViewById(R.id.spinner_menu);
+        //为spinner控件定义适配器adapter
+        arrayAdapter = new ArrayAdapter<String>(MainActivity.this,R.layout.support_simple_spinner_dropdown_item,array);
+        //将spinner控件和adapter绑定
+        spinner.setAdapter(arrayAdapter);
+        //为spinner控件设置监听器
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //获取具体内容:根据定位position获取
+                Toast.makeText(view.getContext(),parent.getAdapter().getItem(position).toString(),Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+    }
+}
+```
+
+
