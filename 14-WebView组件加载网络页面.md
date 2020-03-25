@@ -178,6 +178,7 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 > 最终效果：
+<br>
 <img src="https://github.com/PuiPui-Java/android-tools/blob/master/QQ%E6%88%AA%E5%9B%BE20200325183542.png"></img>
 
 > 你可以看见，我们在此加载了我们的布局文件，然后使用runOnUiThread()去刷新我们的UI界面。
