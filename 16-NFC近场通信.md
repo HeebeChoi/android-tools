@@ -59,6 +59,7 @@ adapter.enableForegroundDispatch(this, pendingIntent, new IntentFilter[]{iso}, t
 >   如果没有应用程序来处理任何类型的Intent，就不做任何事情。 
 
 **案例：**
+> 智能卡协议使用IsoDep
 ```java
 package xixi.nfc;
 import androidx.appcompat.app.AppCompatActivity;
