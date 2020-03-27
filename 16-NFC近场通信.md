@@ -24,7 +24,14 @@
 <!--nfc的intent对象，是哪一个activity处理，就是放在谁的里面-->
 <intent-filter>
     <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+</intent-filter>
+<intent-filter>
+    <action android:name="android.nfc.action.TAG_DISCOVERED" />
     <category android:name="android.intent.category.DEFAULT" />
+    <data android:mimeType="*/*" />
+</intent-filter>
+<intent-filter>
+    <action android:name="android.nfc.action.TECH_DISCOVERED" />
 </intent-filter>
 ```
 
@@ -133,14 +140,31 @@ public class MainActivity extends AppCompatActivity {
         super.onNewIntent(intent);
         //通过拦截的intent对象获取标签数据tag
         Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
+        //tag不为空，表示nfc能识别
         if(tag != null) {
-           //具体交互
             try {
-                NFC nfc = new NFC(IsoDep.get(tag));
+                NfcUtils nfc = new NfcUtils(IsoDep.get(tag));
                 // 发送取随机数APDU命令
                 byte[] resp = nfc.send();
-                // TextView中显示APDU响应
-                textView.setText(resp.toString());
+                //判断是否是响应了
+                if(resp!=null){
+                    Toast.makeText(this,"successfully",Toast.LENGTH_SHORT);
+                    //读取数据
+                    Parcelable[] rawMessages = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
+                    if (rawMessages != null) {
+                        NdefMessage[] messages = new NdefMessage[rawMessages.length];
+                        for (int i = 0; i < rawMessages.length; i++) {
+                            messages[i] = (NdefMessage) rawMessages[i];
+                        }
+                        result = "";
+                        for (int i = 0;i < messages.length;i++){
+                            result += messages;
+                        }
+                        textView.setText("数据："+result+"tag:"+resp.toString());
+                    }else{
+                        textView.setText("数据读取失败，可能不支持该类卡片!");
+                    }
+                }
             } catch (Exception e) {
                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
