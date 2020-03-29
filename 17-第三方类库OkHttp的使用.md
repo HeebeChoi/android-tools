@@ -216,6 +216,18 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        //同步请求
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    Response response = call.execute();
+//                    //...后面和异步一样操作
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
     }
 }
 ```
