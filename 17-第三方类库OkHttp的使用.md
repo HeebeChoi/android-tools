@@ -235,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
 > 注意，UI界面更新放在子线程！！！
 
 > 最后，我们获取的数据界面大致：<br>
-<img src=""></img>
+<img src="https://github.com/cxbjava/android-tools/blob/master/okhttp.png"></img>
 
 
 
